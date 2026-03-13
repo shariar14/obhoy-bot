@@ -349,12 +349,12 @@ NATIONAL_HELPLINES = """
 def main_keyboard():
     return ReplyKeyboardMarkup([
         ["📜 আইন ও শাস্তি জানুন"],
+        ["📋 FIR খসড়া তৈরি করুন"],
         ["🆘 ঘটনা রিপোর্ট করুন"],
         ["📞 জরুরি হেল্পলাইন"],
         ["💬 মানসিক সহায়তা"],
         ["ℹ️ Obhoy সম্পর্কে"],
     ], resize_keyboard=True)
-
 
 def law_keyboard():
     return ReplyKeyboardMarkup([
@@ -428,7 +428,17 @@ async def handle_main_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=law_keyboard()
         )
         return LAW_MENU
-
+# ── FIR SECTION ── ← PASTE THIS BLOCK HERE
+    elif "FIR" in text or "খসড়া" in text:
+        await update.message.reply_text(
+            "📋 FIR খসড়া তৈরি করতে /fir লিখুন\n\n"
+            "অথবা নিচে ট্যাপ করুন:",
+            reply_markup=ReplyKeyboardMarkup(
+                [["/fir — FIR শুরু করুন"]],
+                resize_keyboard=True
+            )
+        )
+        return MAIN_MENU
     # ── REPORT SECTION ──
     elif "রিপোর্ট" in text:
         await update.message.reply_text(
