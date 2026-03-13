@@ -16,6 +16,7 @@ REQUIREMENTS (requirements.txt):
 """
 
 import logging
+from fir_handler import fir_conversation
 from telegram import Update, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import (
     ApplicationBuilder,
@@ -720,6 +721,7 @@ def main():
     )
 
     app.add_handler(conv_handler)
+    app.add_handler(fir_conversation)
     app.add_error_handler(error_handler)
 
     print("✅ Obhoy Bot is running...")
